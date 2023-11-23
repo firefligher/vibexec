@@ -1,7 +1,3 @@
-#if _POSIX_C_SOURCE < 199309L
-    #define _POSIX_C_SOURCE 199309L
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

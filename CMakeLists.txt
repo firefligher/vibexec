@@ -28,6 +28,7 @@ target_link_libraries(
     ${KISSFFT_LIBRARIES}
 )
 
+set(CMAKE_C_STANDARD 11)
 set(
     CMAKE_C_FLAGS_DEBUG
     "${CMAKE_C_FLAGS_RELEASE} ${KISSFFT_CFLAGS}"
