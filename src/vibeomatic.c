@@ -132,8 +132,8 @@ void vibexec_vibeomatic_analyze(
 
         /* Finalization. */
 
-        //session->cache.last_window_out = wnd_cur_out;
-        //session->cache.current_window_out = wnd_last;
+        session->cache.last_window_out = wnd_cur_out;
+        session->cache.current_window_out = wnd_last;
     }
 }
 
@@ -321,21 +321,21 @@ static inline double _score(
     unsigned long window_size
 ) {
     unsigned long i;
-    unsigned int large_diffs;
+    unsigned int large_change;
 
-    large_diffs = 0;
+    large_change = 0;
 
     for (i = 0; i < window_size; i++) {
+        double absolute = fabs(current_window[i].r);
         double diff = fabs(
             fabs(current_window[i].r) - fabs(last_window[i].r)
         );
 
-        if (diff > 10.0) {
-            large_diffs++;
-        }
+        if (absolute > 10.0) large_change++;
+        if (diff > 10.0) large_change++;
     }
 
-    if (large_diffs > 150) large_diffs = 150;
+    if (large_change > 200) large_change = 200;
 
-    return large_diffs / 150.0;
+    return large_change / 200.0;
 }
