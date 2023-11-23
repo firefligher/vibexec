@@ -283,7 +283,9 @@ int vibexec_vibeomatic_initialize(
         (session->parameters->sample_frequency / session->sample_window_size)
         + 1;
 
-    session->cache.score_buffer = malloc(session->cache.score_buffer_capacity);
+    session->cache.score_buffer = malloc(
+        sizeof(double) * session->cache.score_buffer_capacity
+    );
 
     if (!session->cache.score_buffer) {
         fputs("Cannot allocate memory.\n", stderr);
